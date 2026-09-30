@@ -6,8 +6,9 @@ import os, datetime, html
 
 SITE_URL = "https://trend-park.github.io/officeworknet-godeok"   # 배포 후 실제 주소로 교체
 BRAND = "오피스워크넷 고덕강일점"
-ADDR = "서울 강동구 아리수로93길 ○○, ○○빌딩 5층"                 # 번지·건물명 확인 필요
-TALK = "https://talk.naver.com/"                                 # 네이버 톡톡 링크로 교체
+ADDR = "서울 강동구 아리수로93길 33-9 강일프라자 5층 501호"
+MAP = "https://map.naver.com/p/search/%EC%98%A4%ED%94%BC%EC%8A%A4%EC%9B%8C%ED%81%AC%EB%84%B7%20%EA%B3%A0%EB%8D%95%EA%B0%95%EC%9D%BC%EC%A0%90"                 # 번지·건물명 확인 필요
+TALK = "https://talk.naver.com/ct/wnhe5hg"                                 # 네이버 톡톡 링크로 교체
 NAVER_VERIFY = ""                                                # 서치어드바이저 메타 내용 넣기
 TODAY = datetime.date.today().isoformat()
 OUT = "docs"
@@ -50,7 +51,7 @@ def layout(title, desc, body, path, canonical, active="", jsonld=""):
 </div></header>
 {body}
 <footer class="site"><div class="wrap">
-  <div><strong>{BRAND}</strong>{ADDR}<br>상호 ○○○ · 대표 ○○○ · 사업자등록번호 ○○○-○○-○○○○○<br>문의: 네이버 톡톡 (평일 10~18시 답변)</div>
+  <div><strong>{BRAND}</strong>{ADDR}<br>대표 박미애<br>문의: 네이버 톡톡</div>
   <div><strong>서비스</strong><ul><li><a href="{rel}virtual-office.html">비상주 사무실</a></li><li><a href="{rel}private-office.html">상주 사무실</a></li><li><a href="{rel}lounge.html">라운지 고정석</a></li><li><a href="{rel}pricing.html">요금 안내</a></li></ul></div>
   <div><strong>안내</strong><ul><li><a href="{rel}location.html">오시는 길</a></li><li><a href="{rel}blog/index.html">오피스 소식</a></li><li><a href="https://officeworknet.co.kr/" target="_blank" rel="noopener">오피스워크넷 전국 지점</a></li></ul></div>
   <div class="copy">© {datetime.date.today().year} {BRAND}. 모든 요금은 부가세 별도입니다.</div>
@@ -65,7 +66,7 @@ FAQ = [
  ("비상주 사무실 주소로 사업자등록이 되나요?","임대차계약서를 받아 홈택스나 세무서에서 진행합니다. 음식점처럼 실제 영업장이 필요한 업종은 안 되므로 톡톡으로 업종을 먼저 확인해 드립니다."),
  ("계약하러 직접 가야 하나요?","비상주는 온라인으로 끝납니다. 상주·라운지는 방문 후 계약을 권합니다."),
  ("우편물이 오면 어떻게 되나요?","도착하면 알림을 보내드립니다. 방문 수령 또는 사진 전달이 가능합니다."),
- ("주차는 되나요?","건물 안에는 주차 공간이 없습니다. 차로 오시면 건물 주변 공영주차장 2곳을 유료로 이용해 주세요. 강일동 공영주차장은 5분당 150원, 강일동 노상주차장은 5분당 250원(시간제)이며, 경차·전기차 등은 강동구 조례에 따라 할인됩니다. 이름이 비슷하니 이용 전 주차장명을 꼭 확인하세요."),
+ ("주차는 되나요?","본 건물에는 주차가 불가합니다. 차로 오시면 건물 주변 공영주차장 2곳을 유료로 이용해 주세요. 강일동 공영주차장은 5분당 150원, 강일동 노상주차장은 5분당 250원(시간제)이며, 경차·전기차 등은 강동구 조례에 따라 할인됩니다. 이름이 비슷하니 이용 전 주차장명을 꼭 확인하세요."),
  ("주말에도 사무실을 쓸 수 있나요?","24시간 출입 시스템으로 주말·공휴일도 이용합니다."),
  ("중간에 다른 상품으로 바꿀 수 있나요?","비상주에서 라운지, 라운지에서 상주로 옮길 수 있습니다. 남은 기간은 정산해 드립니다."),
  ("법인도 계약할 수 있나요?","네. 법인은 비상주 월 3만원부터이고, 등기부등본이 필요합니다."),
@@ -78,7 +79,7 @@ def faq_jsonld(items=FAQ):
     d={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in items]}
     return f'<script type="application/ld+json">{json.dumps(d,ensure_ascii=False)}</script>'
 
-BIZ_JSONLD = f'''<script type="application/ld+json">{{"@context":"https://schema.org","@type":"LocalBusiness","name":"{BRAND}","address":{{"@type":"PostalAddress","streetAddress":"아리수로93길","addressLocality":"강동구","addressRegion":"서울","addressCountry":"KR"}},"url":"{SITE_URL}/","priceRange":"₩20,000~₩460,000","openingHours":"Mo-Su 00:00-24:00","parentOrganization":{{"@type":"Organization","name":"오피스워크넷","url":"https://officeworknet.co.kr/"}}}}</script>'''
+BIZ_JSONLD = f'''<script type="application/ld+json">{{"@context":"https://schema.org","@type":"LocalBusiness","name":"{BRAND}","address":{{"@type":"PostalAddress","streetAddress":"아리수로93길 33-9 강일프라자 5층 501호","addressLocality":"강동구","addressRegion":"서울","addressCountry":"KR"}},"url":"{SITE_URL}/","priceRange":"₩20,000~₩460,000","openingHours":"Mo-Su 00:00-24:00","parentOrganization":{{"@type":"Organization","name":"오피스워크넷","url":"https://officeworknet.co.kr/"}}}}</script>'''
 
 PRIVATE_TABLE = """<table><thead><tr><th>타입</th><th>위치</th><th class="num">월 요금(부가세 별도)</th><th>이런 분께</th></tr></thead><tbody>
 <tr><td>1인실 내측</td><td>창 없는 조용한 자리</td><td class="num">270,000원</td><td>통화·집중 작업이 많은 1인 사업자</td></tr>
@@ -124,7 +125,7 @@ pages["index.html"] = dict(
 </div></section>
 <section class="alt"><div class="wrap">
   <h2>공간 둘러보기</h2>
-  <p class="sub">5층 전체를 새로 꾸민 공간입니다. 사진은 모두 실제 촬영본입니다.</p>
+  <p class="sub">사진은 모두 실제 촬영본입니다.</p>
   <div class="gallery">
     <figure><img src="img/room-1p-a.jpg" alt="강일동 1인 사무실 창측" loading="lazy"><figcaption>1인실 창측</figcaption></figure>
     <figure><img src="img/room-2p.jpg" alt="강일동 2인 사무실" loading="lazy"><figcaption>2인실</figcaption></figure>
@@ -150,7 +151,8 @@ pages["index.html"] = dict(
 </div></section>
 <section class="alt"><div class="wrap">
   <h2>오시는 길</h2>
-  <p>{ADDR}. 강일역(5호선) ○번 출구 도보 ○분, 강일리버파크 도보 ○분, 미사에서 차로 ○분. <a href="location.html">자세한 안내와 시설 보기 →</a></p>
+  <p>{ADDR}</p>
+  <div class="btn-row"><a class="btn btn-primary" href="{MAP}" target="_blank" rel="noopener">네이버 지도에서 보기</a><a class="btn btn-outline" href="location.html">시설·주차 안내</a></div>
 </div></section>
 {cta()}
 """ + faq_jsonld())
@@ -236,9 +238,9 @@ pages["lounge.html"] = dict(
 </div></section>
 <section class="alt"><div class="wrap">
   <h2>이런 분께 맞습니다</h2>
-  <div class="tags"><span>재택근무자</span><span>프리랜서 디자이너·개발자·마케터</span><span>온라인 강의·유튜브 편집</span><span>사무실 계약 전에 먼저 써보고 싶은 예비창업자</span></div>
+  <div class="tags"><span>재택근무자</span><span>프리랜서 디자이너·개발자·마케터</span><span>사무실 계약 전에 먼저 써보고 싶은 예비창업자</span></div>
 </div></section>
-{cta("하루 써보고 결정하세요","톡톡으로 신청하면 등록 없이 하루 이용이 가능합니다.")}
+{cta("빈자리 확인은 톡톡으로","원하시는 좌석 종류만 남겨주시면 현재 빈자리와 이용 방법을 안내해 드립니다.")}
 """)
 
 # ---------- 요금 ----------
@@ -269,21 +271,21 @@ pages["location.html"] = dict(
  body=f"""
 <div class="wrap"><p class="breadcrumb">홈 › 오시는 길</p></div>
 <div class="page-head wrap"><h1>오시는 길 · 시설 안내</h1>
-<p class="lead">{ADDR}입니다. 강일역(5호선) ○번 출구에서 도보 ○분, 강일리버파크에서 도보 ○분, 미사에서 차로 ○분입니다.</p></div>
+<p class="lead">{ADDR}</p>
+<div class="btn-row"><a class="btn btn-primary" href="{MAP}" target="_blank" rel="noopener">네이버 지도에서 보기</a></div></div>
 <section><div class="wrap">
-  <div class="map">네이버 지도 임베드 자리 (플레이스 → 공유 → 지도 퍼가기 코드)</div>
-  <h2 style="margin-top:40px">시설</h2>
+  <h2>시설</h2>
   <table><thead><tr><th>시설</th><th>안내</th></tr></thead><tbody>
-  <tr><td>상주 사무실 12실</td><td>1인실·2인실. 책상·의자·수납장 기본 제공</td></tr>
+  <tr><td>상주 사무실 12실</td><td>1인실·2인실. 책상·의자 기본 제공</td></tr>
   <tr><td>라운지 고정석 9석</td><td>라운지석·창가석·프리미엄석</td></tr>
   <tr><td>미팅룸</td><td>유리벽 미팅룸 1실. 예약 방식은 톡톡으로 안내</td></tr>
   <tr><td>탕비실</td><td>커피머신·정수기·복합기(프린터)</td></tr>
   <tr><td>우편물 보관함</td><td>도착 시 알림</td></tr>
   <tr><td>출입</td><td>24시간 무인 출입</td></tr>
-  <tr><td>주차</td><td>건물 내 주차 없음. 건물 주변 공영주차장 2곳 유료 이용 — 강일동 공영주차장 5분당 150원, 강일동 노상주차장 5분당 250원</td></tr>
+  <tr><td>주차</td><td>본 건물 주차 불가. 건물 주변 공영주차장 2곳 유료 이용 — 강일동 공영주차장 5분당 150원, 강일동 노상주차장 5분당 250원</td></tr>
   </tbody></table>
   <h2 style="margin-top:40px">주차 안내</h2>
-  <p>건물 안에는 주차 공간이 없어 차로 오시는 분은 건물 주변 공영주차장 2곳을 유료로 이용하시면 됩니다. 두 곳 이름이 비슷하니 이용 전 주차장명을 꼭 확인하세요.</p>
+  <p>본 건물에는 주차가 불가합니다. 차로 오시는 분은 건물 주변 공영주차장 2곳을 유료로 이용해 주세요. 두 곳 이름이 비슷하니 이용 전 주차장명을 꼭 확인하세요.</p>
   <table><thead><tr><th>주차장</th><th class="num">시간제 요금</th><th>비고</th></tr></thead><tbody>
   <tr><td>강일동 공영주차장</td><td class="num">150원 / 5분</td><td>경차·전기차·저공해차량 50% 할인 등 강동구 조례 기준</td></tr>
   <tr><td>강일동 노상주차장</td><td class="num">250원 / 5분</td><td>할인 기준 동일, 2건 이상 해당 시 높은 1건만 적용</td></tr>
@@ -332,7 +334,7 @@ posts = [
 <p>첫째, 모니터와 키보드를 두고 다닙니다. 출근하면 바로 일이 시작됩니다. 둘째, 퇴근이 생겼습니다. 사무실을 나오면 일이 끝납니다. 셋째, 비용이 카페와 비슷하거나 낮습니다. 라운지석 월 10만원(부가세 별도)은 카페 커피값과 크게 다르지 않습니다.</p>
 <blockquote>고정석은 사무실을 빌리는 게 아니라 "출퇴근"을 사는 것에 가깝습니다.</blockquote>
 <h2>강일리버파크에서의 거리</h2>
-<p>오피스워크넷 고덕강일점은 강일리버파크에서 걸어서 ○분, 강일역 인근입니다. 점심에 집에 다녀올 수 있는 거리라는 점이 재택근무자에게는 중요합니다. 하루 써보고 결정할 수 있으니 톡톡으로 신청해 보세요.</p>
+<p>오피스워크넷 고덕강일점은 강일리버파크에서 걸어갈 수 있는 거리, 강일역 인근입니다. 점심에 집에 다녀올 수 있는 거리라는 점이 재택근무자에게는 중요합니다. 빈자리와 이용 방법은 톡톡으로 물어보세요.</p>
 """),
  dict(slug="gangil-dong-one-person-office-cost", date="2026-09-29",
   title="강일동 1인사무실 월 비용, 상가 임대와 공유오피스 비교",
@@ -341,7 +343,7 @@ posts = [
   body="""
 <p>"강일동 1인사무실"을 검색하면 월세만 보고 판단하기 쉽습니다. 실제 월 비용은 월세에 관리비, 인터넷, 냉난방, 가구 감가, 보증금 이자까지 더해야 나옵니다. 항목별로 나눠 보겠습니다.</p>
 <h2>상가 사무실 1인 기준 월 비용 항목</h2>
-<p>월세 외에 관리비(건물마다 다름), 인터넷 회선, 여름·겨울 냉난방 전기료, 책상·의자·수납장 구입비를 월로 환산한 금액, 그리고 보증금이 묶이는 기회비용이 있습니다. 여기에 1년 이상 계약이 붙습니다.</p>
+<p>월세 외에 관리비(건물마다 다름), 인터넷 회선, 여름·겨울 냉난방 전기료, 책상·의자 구입비를 월로 환산한 금액, 그리고 보증금이 묶이는 기회비용이 있습니다. 여기에 1년 이상 계약이 붙습니다.</p>
 <h2>공유오피스 1인실 월 비용 항목</h2>
 <figure class="post-img"><img src="../img/room-1p-c.jpg" alt="강일동 1인사무실 창가" loading="lazy"><figcaption>1인실 창측. 책상·의자가 준비된 상태로 입주합니다.</figcaption></figure>
 <p>월 요금 하나입니다. 오피스워크넷 고덕강일점 기준 1인실 내측 27만원, 창측 35만원(부가세 별도)이고 관리비·인터넷·냉난방·가구가 포함됩니다. 6개월 결제 시 6만원 할인, 1년 결제 시 1개월 추가입니다.</p>
@@ -393,7 +395,7 @@ for path, pg in pages.items():
     with open(f"{OUT}/{path}", "w", encoding="utf-8") as f:
         f.write(layout(pg["title"], pg["desc"], pg["body"], path, canonical, pg.get("active",""), pg.get("jsonld","")))
 import shutil; shutil.copy("style.css", f"{OUT}/style.css")
-shutil.copytree("img", f"{OUT}/img", dirs_exist_ok=True)
+if os.path.isdir("img"): shutil.copytree("img", f"{OUT}/img", dirs_exist_ok=True)
 
 with open(f"{OUT}/sitemap.xml","w",encoding="utf-8") as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
