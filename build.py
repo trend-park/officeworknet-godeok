@@ -4,7 +4,7 @@ python3 build.py  →  docs/ 폴더에 HTML 생성
 """
 import os, datetime, html
 
-SITE_URL = "https://trend-park.github.io/officeworknet-godeok"   # 배포 후 실제 주소로 교체
+SITE_URL = "https://officeworknet-gangil.kr"   # 배포 후 실제 주소로 교체
 BRAND = "오피스워크넷 고덕강일점"
 ADDR = "서울 강동구 아리수로93길 33-9 강일프라자 5층 501호"
 MAP = "https://map.naver.com/p/search/%EC%98%A4%ED%94%BC%EC%8A%A4%EC%9B%8C%ED%81%AC%EB%84%B7%20%EA%B3%A0%EB%8D%95%EA%B0%95%EC%9D%BC%EC%A0%90"                 # 번지·건물명 확인 필요
