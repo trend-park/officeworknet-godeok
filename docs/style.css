@@ -123,3 +123,10 @@ article.post .link-box strong{display:block;margin-bottom:6px;font-size:17px}
 .post-img img{width:100%;border-radius:12px}
 .post-img figcaption{font-size:13px;color:var(--muted);margin-top:8px}
 @media (max-width:820px){.hero-grid{grid-template-columns:1fr;gap:24px}.gallery,.gallery.three{grid-template-columns:repeat(2,1fr)}}
+
+/* 푸터 위 여백: 본문 마지막 요소가 푸터에 붙지 않도록 */
+footer.site{margin-top:64px}
+section.cta+footer.site{margin-top:0}
+article.post{padding-bottom:8px}
+.post-list{margin-bottom:16px}
+@media (max-width:820px){footer.site{margin-top:48px}}

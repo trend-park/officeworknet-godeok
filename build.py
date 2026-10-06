@@ -313,7 +313,7 @@ posts = [
 <h2>1. 집에서 얼마나 걸리는가</h2>
 <p>공유오피스는 매일 가는 곳입니다. 왕복 1시간이 넘으면 몇 달 안에 다시 집에서 일하게 됩니다. 고덕그라시움 기준으로는 상일동역·강일역 생활권, 즉 고덕동과 강일동 안에서 찾는 것이 현실적입니다. 점심에 집에 다녀올 수 있는 거리라면 재택과 출근의 장점을 둘 다 가져갈 수 있습니다.</p>
 <h2>2. 1인실인가, 고정석인가</h2>
-<figure class="post-img"><img src="../img/room-1p-b.jpg" alt="고덕그라시움 인근 1인 공유오피스 1인실" loading="lazy"><figcaption>오피스워크넷 고덕강일점 1인실. 문이 닫히는 독립 공간입니다.</figcaption></figure>
+<figure class="post-img"><img src="../img/room-1p-window.jpg" alt="고덕그라시움 인근 1인 공유오피스 1인실 창측" loading="lazy"><figcaption>오피스워크넷 고덕강일점 1인실 창측. 문이 닫히는 독립 공간입니다.</figcaption></figure>
 <p>"1인 공유오피스"라고 해도 두 종류가 있습니다. 문이 닫히는 독립 1인실과, 라운지 안에 내 책상 하나를 두는 고정석입니다. 상담 전화가 많거나 화상회의가 잦으면 1인실, 노트북 작업 위주면 고정석이 맞습니다. 고정석은 비용이 1인실의 절반 이하라서, 통화가 적은 분이 굳이 1인실을 쓸 이유는 없습니다.</p>
 <h2>3. 월 요금에 무엇이 포함되는가</h2>
 <p>관리비, 인터넷, 냉난방, 책상·의자가 포함인지 확인하세요. 상가 사무실은 이 항목이 전부 따로 붙습니다. 오피스워크넷 고덕강일점 기준으로 1인실은 내측 월 27만원, 창측 월 35만원, 라운지 고정석은 월 10만원부터이고 위 항목이 모두 포함입니다. 사업자등록 주소만 필요하면 비상주 월 2만원부터입니다. (모든 금액 부가세 별도)</p>
@@ -322,7 +322,7 @@ posts = [
 <h2>5. 운영자가 같은 건물에 있는가</h2>
 <p>우편물 수령, 출입 문제, 계약 변경은 운영자가 상주해야 그날 해결됩니다. 무인으로만 운영되는 곳은 작은 일이 며칠씩 걸립니다. 계약 전에 "관리자가 어디 계시냐"를 꼭 물어보세요.</p>
 <h2>고덕그라시움에서 오피스워크넷 고덕강일점까지</h2>
-<figure class="post-img"><img src="../img/lounge.jpg" alt="강일동 공유오피스 라운지 고정석" loading="lazy"><figcaption>라운지 고정석. 모니터와 짐을 두고 다닙니다.</figcaption></figure>
+<figure class="post-img"><img src="../img/lounge-desks.jpg" alt="강일동 공유오피스 라운지 고정석 창가 자리" loading="lazy"><figcaption>라운지 고정석 창가 자리. 모니터와 짐을 두고 다닙니다.</figcaption></figure>
 <p>오피스워크넷 고덕강일점은 고덕그라시움과 같은 5호선 생활권인 강일동 강일프라자 5층에 있습니다. 고덕동에서 차로 가까운 거리이고, 대중교통은 상일동역 다음 정거장인 강일역을 이용합니다. 본 건물에는 주차가 되지 않아 차로 오실 때는 인근 강일동 공영주차장을 이용하셔야 하는 점은 미리 알려드립니다.</p>
 <blockquote>정리하면, 고덕그라시움에서 1인 공유오피스를 찾는다면 "거리 → 1인실인지 고정석인지 → 포함 항목 → 계약 조건 → 운영자 상주" 순서로 확인하면 실패가 적습니다.</blockquote>
 <h2>빈자리 확인</h2>
@@ -419,6 +419,15 @@ for path, pg in pages.items():
     with open(f"{OUT}/{path}", "w", encoding="utf-8") as f:
         f.write(layout(pg["title"], pg["desc"], pg["body"], path, canonical, pg.get("active",""), pg.get("jsonld","")))
 import shutil; shutil.copy("style.css", f"{OUT}/style.css")
+EXTRA_CSS = """
+/* 푸터 위 여백: 본문 마지막 요소가 푸터에 붙지 않도록 */
+footer.site{margin-top:64px}
+section.cta+footer.site{margin-top:0}
+article.post{padding-bottom:8px}
+.post-list{margin-bottom:16px}
+@media (max-width:820px){footer.site{margin-top:48px}}
+"""
+with open(f"{OUT}/style.css","a",encoding="utf-8") as f: f.write(EXTRA_CSS)
 if os.path.isdir("img"): shutil.copytree("img", f"{OUT}/img", dirs_exist_ok=True)
 
 with open(f"{OUT}/sitemap.xml","w",encoding="utf-8") as f:
