@@ -9,7 +9,7 @@ BRAND = "오피스워크넷 고덕강일점"
 ADDR = "서울 강동구 아리수로93길 33-9 강일프라자 5층 501호"
 MAP = "https://map.naver.com/p/search/%EC%98%A4%ED%94%BC%EC%8A%A4%EC%9B%8C%ED%81%AC%EB%84%B7%20%EA%B3%A0%EB%8D%95%EA%B0%95%EC%9D%BC%EC%A0%90"                 # 번지·건물명 확인 필요
 TALK = "https://talk.naver.com/ct/wnhe5hg"                                 # 네이버 톡톡 링크로 교체
-NAVER_VERIFY = ""                                                # 서치어드바이저 메타 내용 넣기
+NAVER_VERIFY = "9036c369de6061e721796b0d380158464fa435b9"                                                # 서치어드바이저 메타 내용 넣기
 TODAY = datetime.date.today().isoformat()
 OUT = "docs"
 
