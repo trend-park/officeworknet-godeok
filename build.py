@@ -3,6 +3,7 @@
 python3 build.py  →  docs/ 폴더에 HTML 생성
 """
 import os, datetime, html
+from urllib.parse import quote
 
 SITE_URL = "https://officeworknet-gangil.kr"   # 배포 후 실제 주소로 교체
 BRAND = "오피스워크넷 고덕강일점"
@@ -304,7 +305,7 @@ pages["location.html"] = dict(
 
 # ---------- 블로그 ----------
 posts = [
- dict(slug="godeok-graciums-one-person-shared-office", date="2026-10-06",
+ dict(slug="고덕그라시움-1인-공유오피스", old="godeok-graciums-one-person-shared-office", date="2026-10-06",
   title="고덕그라시움 1인 공유오피스, 단지 근처에서 찾을 때 확인할 5가지",
   desc="고덕그라시움에 살면서 혼자 일할 사무실을 찾는 분을 위해, 1인 공유오피스를 고를 때 꼭 확인할 다섯 가지와 강일동 공유오피스까지의 동선을 정리했습니다.",
   kw="고덕그라시움 1인 공유오피스",
@@ -328,7 +329,7 @@ posts = [
 <h2>빈자리 확인</h2>
 <p>1인실과 고정석은 사진보다 직접 보는 게 빠릅니다. 톡톡으로 "고덕그라시움에서 가요, 1인실(또는 고정석) 보고 싶어요"라고 남겨주시면 현재 빈자리와 방문 가능한 시간을 안내해 드립니다.</p>
 """),
- dict(slug="gangil-dong-shared-office", date="2026-09-29",
+ dict(slug="강일동-공유오피스", old="gangil-dong-shared-office", date="2026-09-29",
   title="강일동 공유오피스, 집에서 걸어가는 사무실은 어디 있을까",
   desc="강일동에서 사무실을 찾을 때 상가 임대·카페·공유오피스 세 가지를 월 비용과 계약 조건으로 비교했습니다.",
   kw="강일동 공유오피스",
@@ -345,7 +346,7 @@ posts = [
 <h2>운영자 입장에서 본 한 가지</h2>
 <p>공유오피스를 고를 때 요금표보다 먼저 볼 것은 "누가 관리하는가"입니다. 관리자가 상주하지 않는 곳은 우편물, 출입 문제, 계약 변경이 며칠씩 걸립니다. 운영자가 같은 건물에 있는지 계약 전에 물어보세요.</p>
 """),
- dict(slug="gangil-riverpark-freelancer-desk", date="2026-09-29",
+ dict(slug="강일리버파크-공유오피스-고정석", old="gangil-riverpark-freelancer-desk", date="2026-09-29",
   title="강일리버파크 사는 프리랜서가 카페 대신 고정석을 선택한 이유",
   desc="강일리버파크에서 재택근무를 하던 프리랜서가 라운지 고정석으로 옮기면서 달라진 세 가지.",
   kw="강일리버파크 공유오피스",
@@ -360,7 +361,7 @@ posts = [
 <h2>강일리버파크에서의 거리</h2>
 <p>오피스워크넷 고덕강일점은 강일리버파크에서 걸어갈 수 있는 거리, 강일역 인근입니다. 점심에 집에 다녀올 수 있는 거리라는 점이 재택근무자에게는 중요합니다. 빈자리와 이용 방법은 톡톡으로 물어보세요.</p>
 """),
- dict(slug="gangil-dong-one-person-office-cost", date="2026-09-29",
+ dict(slug="강일동-1인사무실-월비용", old="gangil-dong-one-person-office-cost", date="2026-09-29",
   title="강일동 1인사무실 월 비용, 상가 임대와 공유오피스 비교",
   desc="강일동 1인 사무실을 구할 때 상가 임대와 공유오피스 1인실의 월 총비용을 항목별로 비교했습니다.",
   kw="강일동 1인사무실",
@@ -398,6 +399,10 @@ def post_page(p):
 
 for p in posts:
     pages[f"blog/{p['slug']}.html"] = post_page(p)
+    if p.get("old"):
+        os.makedirs(f"{OUT}/blog", exist_ok=True)
+        with open(f"{OUT}/blog/{p['old']}.html","w",encoding="utf-8") as rf:
+            rf.write(f'<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url={quote(p["slug"])}.html"><link rel="canonical" href="{SITE_URL}/blog/{quote(p["slug"])}.html"><a href="{quote(p["slug"])}.html">이동</a>')
 
 pages["blog/index.html"] = dict(
  title="오피스 소식 | 오피스워크넷 고덕강일점",
@@ -407,7 +412,7 @@ pages["blog/index.html"] = dict(
 <div class="wrap"><p class="breadcrumb"><a href="../index.html">홈</a> › 오피스 소식</p></div>
 <div class="page-head wrap"><h1>오피스 소식</h1><p class="lead">강일동·고덕·미사에서 사무실을 찾는 분, 사업자등록 주소가 필요한 분이 궁금해하는 것을 운영자가 직접 씁니다.</p></div>
 <section><div class="wrap"><div class="post-list">
-{"".join(f'<article><time datetime="{p["date"]}">{p["date"]}</time><h3><a href="{p["slug"]}.html">{p["title"]}</a></h3><p>{p["desc"]}</p></article>' for p in posts)}
+{"".join(f'<article><time datetime="{p["date"]}">{p["date"]}</time><h3><a href="{quote(p["slug"])}.html">{p["title"]}</a></h3><p>{p["desc"]}</p></article>' for p in posts)}
 </div></div></section>
 {cta()}
 """)
@@ -415,7 +420,7 @@ pages["blog/index.html"] = dict(
 # ---------- 출력 ----------
 os.makedirs(f"{OUT}/blog", exist_ok=True)
 for path, pg in pages.items():
-    canonical = f"{SITE_URL}/{'' if path=='index.html' else path}"
+    canonical = f"{SITE_URL}/{'' if path=='index.html' else quote(path)}"
     with open(f"{OUT}/{path}", "w", encoding="utf-8") as f:
         f.write(layout(pg["title"], pg["desc"], pg["body"], path, canonical, pg.get("active",""), pg.get("jsonld","")))
 import shutil; shutil.copy("style.css", f"{OUT}/style.css")
@@ -433,7 +438,7 @@ if os.path.isdir("img"): shutil.copytree("img", f"{OUT}/img", dirs_exist_ok=True
 with open(f"{OUT}/sitemap.xml","w",encoding="utf-8") as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
     for path in pages:
-        loc = f"{SITE_URL}/{'' if path=='index.html' else path}"
+        loc = f"{SITE_URL}/{'' if path=='index.html' else quote(path)}"
         f.write(f"  <url><loc>{loc}</loc><lastmod>{TODAY}</lastmod></url>\n")
     f.write("</urlset>\n")
 with open(f"{OUT}/robots.txt","w",encoding="utf-8") as f:
@@ -441,7 +446,7 @@ with open(f"{OUT}/robots.txt","w",encoding="utf-8") as f:
 with open(f"{OUT}/rss.xml","w",encoding="utf-8") as f:
     f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>{BRAND} 오피스 소식</title><link>{SITE_URL}/blog/index.html</link><description>강일동·고덕·미사 사무실과 사업자등록 이야기</description>\n')
     for p in posts:
-        f.write(f"<item><title>{html.escape(p['title'])}</title><link>{SITE_URL}/blog/{p['slug']}.html</link><description>{html.escape(p['desc'])}</description><pubDate>{p['date']}</pubDate></item>\n")
+        f.write(f"<item><title>{html.escape(p['title'])}</title><link>{SITE_URL}/blog/{quote(p['slug'])}.html</link><description>{html.escape(p['desc'])}</description><pubDate>{p['date']}</pubDate></item>\n")
     f.write("</channel></rss>\n")
 open(f"{OUT}/.nojekyll","w").close()
 print("generated", len(pages), "pages →", OUT)
