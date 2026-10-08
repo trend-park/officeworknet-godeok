@@ -40,7 +40,7 @@ def layout(title, desc, body, path, canonical, active="", jsonld=""):
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebSite","name":"{BRAND}","alternateName":"오피스워크넷 강일점","url":"{SITE_URL}/"}}</script>
 <meta property="og:image" content="{SITE_URL}/og-logo.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<link rel="icon" type="image/png" sizes="32x32" href="{rel}favicon-32.png"><link rel="icon" type="image/png" sizes="64x64" href="{rel}favicon-64.png"><link rel="apple-touch-icon" sizes="180x180" href="{rel}apple-touch-icon.png">
+<link rel="icon" href="{SITE_URL}/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="{SITE_URL}/favicon-32.png?v=2"><link rel="icon" type="image/png" sizes="64x64" href="{SITE_URL}/favicon-64.png?v=2"><link rel="shortcut icon" href="{SITE_URL}/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="{SITE_URL}/apple-touch-icon.png?v=2">
 <meta name="robots" content="index,follow">
 {verify}
 <link rel="alternate" type="application/rss+xml" title="{BRAND} 오피스 소식" href="{SITE_URL}/rss.xml">
