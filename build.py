@@ -36,6 +36,8 @@ def layout(title, desc, body, path, canonical, active="", jsonld=""):
 <meta property="og:type" content="website">
 <meta property="og:url" content="{canonical}">
 <meta property="og:site_name" content="{BRAND}">
+<meta name="application-name" content="{BRAND}">
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebSite","name":"{BRAND}","alternateName":"오피스워크넷 강일점","url":"{SITE_URL}/"}}</script>
 <meta property="og:image" content="{SITE_URL}/og-logo.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <link rel="icon" type="image/png" sizes="32x32" href="{rel}favicon-32.png"><link rel="icon" type="image/png" sizes="64x64" href="{rel}favicon-64.png"><link rel="apple-touch-icon" sizes="180x180" href="{rel}apple-touch-icon.png">
@@ -106,14 +108,14 @@ pages = {}
 
 # ---------- 홈 ----------
 pages["index.html"] = dict(
- title="오피스워크넷 고덕강일점 | 강일동 공유오피스·1인사무실·비상주사무실",
- desc="강일동 공유오피스. 비상주 월 2만원, 라운지 고정석 월 10만원, 1인실 월 27만원부터. 강일리버파크·고덕·미사 인근, 강일역 도보권.",
+ title="강일동 공유오피스 · 강동구 비상주사무실 | 오피스워크넷 고덕강일점",
+ desc="강일동 공유오피스 1인실·고정석 월 10만원부터, 강동구 비상주사무실 월 2만원부터. 강일역 도보권, 고덕·미사 인근.",
  active="index.html", jsonld=BIZ_JSONLD,
  body=f"""
 <section class="hero"><div class="wrap hero-grid">
   <div>
-  <h1>사무실은 필요한데,<br>임대료는 부담되는 분께</h1>
-  <p class="lead">서울 강동구 강일동, 강일역 인근 공유오피스. 사업자등록용 주소는 월 2만원부터, 내 책상 하나는 월 10만원부터, 독립된 1인실은 월 27만원부터 시작합니다. (부가세 별도)</p>
+  <h1>강일동 공유오피스,<br>강동구 비상주사무실</h1>
+  <p class="lead">사무실은 필요한데 임대료는 부담되는 분께. 서울 강동구 강일동, 강일역 인근 공유오피스. 사업자등록용 주소는 월 2만원부터, 내 책상 하나는 월 10만원부터, 독립된 1인실은 월 27만원부터 시작합니다. (부가세 별도)</p>
   <div class="btn-row"><a class="btn btn-primary" href="{TALK}" target="_blank" rel="noopener">네이버 톡톡으로 1분 상담</a><a class="btn btn-outline" href="pricing.html">요금표 보기</a></div>
   </div>
   <img class="hero-img" src="img/entrance.jpg" alt="오피스워크넷 고덕강일점 입구와 라운지" width="1600" height="1200">
@@ -163,12 +165,12 @@ pages["index.html"] = dict(
 
 # ---------- 비상주 ----------
 pages["virtual-office.html"] = dict(
- title="비상주사무실 월 2만원부터 | 사업자등록 주소 임대 오피스워크넷 고덕강일점",
+ title="강동구 비상주사무실 월 2만원부터 | 사업자등록 주소 임대 오피스워크넷 고덕강일점",
  desc="강동구 비상주 사무실. 사업자등록·법인설립 주소 월 2만원부터. 온라인 계약, 우편물 도착 알림, 세금계산서 발행.",
  active="virtual-office.html",
  body=f"""
 <div class="wrap"><p class="breadcrumb">홈 › 비상주 사무실</p></div>
-<div class="page-head wrap"><h1>비상주 사무실 — 사업자등록 주소, 월 2만원부터</h1>
+<div class="page-head wrap"><h1>강동구 비상주사무실 — 사업자등록 주소, 월 2만원부터</h1>
 <p class="lead">집 주소로 사업자등록을 하면 집 주소가 쇼핑몰·세금계산서·명함에 그대로 노출됩니다. 오피스워크넷 고덕강일점 비상주 사무실은 서울 강동구의 실제 사무실 주소를 사업자등록과 법인설립에 쓰도록 임대합니다. 방문 없이 온라인으로 계약하고 임대차계약서를 받습니다.</p></div>
 <section><div class="wrap">
   <h2>요금 (부가세 별도)</h2>{VIRTUAL_TABLE}
