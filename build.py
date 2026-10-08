@@ -14,6 +14,7 @@ NAVER_VERIFY = "9036c369de6061e721796b0d380158464fa435b9"                       
 TODAY = datetime.date.today().isoformat()
 OUT = "docs"
 
+
 NAV = [("index.html","홈"),("virtual-office.html","비상주 사무실"),("private-office.html","상주 사무실"),
        ("lounge.html","라운지 고정석"),("pricing.html","요금 안내"),("location.html","오시는 길"),("blog/index.html","오피스 소식")]
 
@@ -35,7 +36,9 @@ def layout(title, desc, body, path, canonical, active="", jsonld=""):
 <meta property="og:type" content="website">
 <meta property="og:url" content="{canonical}">
 <meta property="og:site_name" content="{BRAND}">
-<meta property="og:image" content="{SITE_URL}/img/entrance.jpg">
+<meta property="og:image" content="{SITE_URL}/og-logo.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<link rel="icon" type="image/png" sizes="32x32" href="{rel}favicon-32.png"><link rel="icon" type="image/png" sizes="64x64" href="{rel}favicon-64.png"><link rel="apple-touch-icon" sizes="180x180" href="{rel}apple-touch-icon.png">
 <meta name="robots" content="index,follow">
 {verify}
 <link rel="alternate" type="application/rss+xml" title="{BRAND} 오피스 소식" href="{SITE_URL}/rss.xml">
@@ -80,7 +83,7 @@ def faq_jsonld(items=FAQ):
     d={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in items]}
     return f'<script type="application/ld+json">{json.dumps(d,ensure_ascii=False)}</script>'
 
-BIZ_JSONLD = f'''<script type="application/ld+json">{{"@context":"https://schema.org","@type":"LocalBusiness","name":"{BRAND}","address":{{"@type":"PostalAddress","streetAddress":"아리수로93길 33-9 강일프라자 5층 501호","addressLocality":"강동구","addressRegion":"서울","addressCountry":"KR"}},"url":"{SITE_URL}/","priceRange":"₩20,000~₩460,000","openingHours":"Mo-Su 00:00-24:00","parentOrganization":{{"@type":"Organization","name":"오피스워크넷","url":"https://officeworknet.co.kr/"}}}}</script>'''
+BIZ_JSONLD = f'''<script type="application/ld+json">{{"@context":"https://schema.org","@type":"LocalBusiness","name":"{BRAND}","address":{{"@type":"PostalAddress","streetAddress":"아리수로93길 33-9 강일프라자 5층 501호","addressLocality":"강동구","addressRegion":"서울","addressCountry":"KR"}},"url":"{SITE_URL}/","logo":"{SITE_URL}/logo.png","image":"{SITE_URL}/og-logo.png","priceRange":"₩20,000~₩460,000","openingHours":"Mo-Su 00:00-24:00","parentOrganization":{{"@type":"Organization","name":"오피스워크넷","url":"https://officeworknet.co.kr/"}}}}</script>'''
 
 PRIVATE_TABLE = """<table><thead><tr><th>타입</th><th>위치</th><th class="num">월 요금(부가세 별도)</th><th>이런 분께</th></tr></thead><tbody>
 <tr><td>1인실 내측</td><td>창 없는 조용한 자리</td><td class="num">270,000원</td><td>통화·집중 작업이 많은 1인 사업자</td></tr>
